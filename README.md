@@ -69,8 +69,7 @@ dataset
 # Environment Requirements
 
 - Hardware
-    - Support  and GPU environment.
-    - For :  910.
+    - Support  GPU environment.
     - For GPU: cuda==10.1.
 - Framework
     - Mindspore=1.5.0(See [Installation](https://www.mindspore.cn/install/))
@@ -92,12 +91,7 @@ cd MVD/scripts/ # please enter this path before sh XXX.sh, otherwise path errors
 bash run_standalone_train_sysu_gpu.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
 ```
 
-On :
 
-```shell
-cd MVD/scripts/ # please enter this path before sh XXX.sh, otherwise path errors :)
-bash run_standalone_train_sysu_.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
-```
 
 Explanation: `[DATASET_PATH]` specifies your own path to  SYSU-MM01 or RegDB dataset. For example, if you organize dataset as [above structure](### Recommended Dataset Organization(Example)), then the path should be `/.../dataset/sysu` or `/.../dataset/regdb` respectively. `[CHECKPOINT_PATH]` specify your path to **resnet50** pretrain `.ckpt` file.
 
@@ -185,12 +179,6 @@ cd MVD/scripts/ # please enter this path before sh XXX.sh, otherwise path errors
 bash run_standalone_train_sysu_gpu.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
 ```
 
-For ：
-
-```shell
-cd MVD/scripts/ # please enter this path before sh XXX.sh, otherwise path errors :)
-bash run_standalone_train_sysu_.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
-```
 
 You can replace `run_standalone_train_sysu_gpu.sh` or `run_standalone_train_sysu_.sh` with other training scripts.
 
@@ -216,12 +204,6 @@ cd MVD/scripts/ # please enter this path before sh XXX.sh, otherwise path errors
 bash run_eval_sysu_gpu.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
 ```
 
-On :
-
-```shell
-cd DDAG_mindspore/scripts/ # please enter this path before sh XXX.sh, otherwise path errors :)
-bash run_eval_sysu_.sh [DATASET_PATH] [CHECKPOINT_PATH] [SYSU_MODE] [DEVICE_ID]
-```
 
 Explanation: `[DATASET_PATH]` specifies your own path to  SYSU-MM01 or RegDB dataset, same as [Quick Start](## Quick Start) section. `[CHECKPOINT_PATH]` specifies your **saved checkpoint files during training**, not resnet50.
 
@@ -238,65 +220,65 @@ After running `bash run_eval_XXX.sh [DATASET_PATH] [CHECKPOINT_PATH]`, you will 
 
 ## Training Performance
 
-| Parameters                 |  910                                                   | GPU(RTX Titan) |
-| -------------------------- | ------------------------------------------------------------ | ----------------------------------------------|
-| Model Version              | MVD: baseline + modal specific & modal share backbone + VIB | MVD: baseline + modal specific & modal share backbone + VIB |
-| Resource                   |  910; CPU 2.60GHz, 192cores; Memory 755G; OS Euler2.8  |  NVIDIA RTX Titan-24G        |
-| uploaded Date              | 12/19/2021 (month/day/year)                 | 12/19/2021 (month/day/year)          |
-| MindSpore Version          | 1.3.0, 1.5.0                                             | 1.3.0, 1.5.0                                  |
-| Dataset                    | SYSU-MM01, RegDB                              | SYSU-MM01, RegDB           |
-| Training Parameters（SYSU-MM01） | Epochs=80, steps per epoch=695, batch_size = 64 | epoch=80, steps per epoch=64 batch_size = 64 |
-| Training Parameters（RegDB） | Epochs=80, steps per epoch=695, batch_size = 64 | epoch=80, steps per epoch=64 batch_size = 64 |
-| Optimizer                  | Adam                                                 | Adam                                  |
-| Loss Function              | Softmax Cross Entropy + Triplet Loss                         | Softmax Cross Entropy + Triplet Loss          |
-| outputs                    | feature vector + probability                              | feature vector + probability               |
-| Loss                       | 1.7161                                     |  2.0663      |
-| Speed                      | 830 ms/step (1pcs, PyNative Mode)               | 940ms/step (1pcs, PyNative Mode) |
-| Total time                 | SYSU(1pcs, PyNative Mode) : about  13h; RegDB: about 3h30min | SYSU(1pcs, PyNative Mode) : about  14h; RegDB: about 4hmin |
-| Parameters (M)             | 161.9M                                     | 161.9M                        |
-| Checkpoint for Fine tuning | 329.2M (.ckpt file)                                     | 329.2M (.ckpt file)                     |
-| Scripts                    | [link](https://gitee.com/mindspore/models/tree/master/research/cv/MVD) ||
+| Parameters                 |  GPU(RTX Titan) |
+| -------------------------- | ----------------------------------------------|
+| Model Version              |MVD: baseline + modal specific & modal share backbone + VIB |
+| Resource                   |    NVIDIA RTX Titan-24G        |
+| uploaded Date              |  12/19/2021 (month/day/year)          |
+| MindSpore Version          | 1.3.0, 1.5.0                                  |
+| Dataset                    |SYSU-MM01, RegDB           |
+| Training Parameters（SYSU-MM01） |  epoch=80, steps per epoch=64 batch_size = 64 |
+| Training Parameters（RegDB） |  epoch=80, steps per epoch=64 batch_size = 64 |
+| Optimizer                  | Adam                                  |
+| Loss Function              |  Softmax Cross Entropy + Triplet Loss          |
+| outputs                    |  feature vector + probability               |
+| Loss                       |  2.0663      |
+| Speed                      |  940ms/step (1pcs, PyNative Mode) |
+| Total time                 |  SYSU(1pcs, PyNative Mode) : about  14h; RegDB: about 4hmin |
+| Parameters (M)             |  161.9M                        |
+| Checkpoint for Fine tuning |  329.2M (.ckpt file)                     |
+| Scripts                    | [link](https://gitee.com/mindspore/models/tree/master/research/cv/MVD) |
 
 ## Evaluation Performance
 
-| Parameters        |                                                       | GPU(RTX Titan)                                              |
-| ----------------- | ----------------------------------------------------------- | ----------------------------------------------------------- |
-| Model Version     | MVD: baseline + modal specific & modal share backbone + VIB | MVD: baseline + modal specific & modal share backbone + VIB |
-| Resource          |  910; OS Euler2.8                                     | NVIDIA RTX Titan-24G                                        |
-| Uploaded Date     | 12/19/2021 (month/day/year)                                 | 12/19/2021 (month/day/year)                                 |
-| MindSpore Version | 1.5.0, 1.3.0                                                | 1.5.0, 1.3.0                                                |
-| Dataset           | SYSU-MM01, RegDB                                            | SYSU-MM01, RegDB                                            |
-| batch_size        | 64                                                          | 64                                                          |
-| outputs           | feature                                                     | feature                                                     |
-| Accuracy          | See following 4 tables ↓                                    |                                                             |
+| Parameters        |               GPU(RTX Titan)                                              |
+| ----------------- |  ----------------------------------------------------------- |
+| Model Version     |  MVD: baseline + modal specific & modal share backbone + VIB |
+| Resource          |   NVIDIA RTX Titan-24G                                        |
+| Uploaded Date     |  12/19/2021 (month/day/year)                                 |
+| MindSpore Version |  1.5.0, 1.3.0                                                |
+| Dataset           |  SYSU-MM01, RegDB                                            |
+| batch_size        |  64                                                          |
+| outputs           |  feature                                                     |
+| Accuracy          |                                                              |
 
 ## SYSU-MM01 (all-search mode)
 
-| Metric | Value(Pytorch) | Value(Mindspore, GPU) | Value(Mindspore,  910) |
-| :----: | :------------: | :-------------------: | :--------------------------: |
-| Rank-1 |     60.02%     |        60.08%         |            58.64%            |
-|  mAP   |     58.80%     |        57.55%         |            57.57%            |
+| Metric | Value(Pytorch) | Value(Mindspore, GPU) | 
+| :----: | :------------: | :-------------------: | 
+| Rank-1 |     60.02%     |        60.08%         |        
+|  mAP   |     58.80%     |        57.55%         |            
 
 ## SYSU-MM01 (indoor-search mode)
 
-| Metric | Value(Pytorch) | Value(Mindspore, GPU) | Value(Mindspore,  910) |
-| :----: | :------------: | :-------------------: | :--------------------------: |
-| Rank-1 |     66.05%     |        69.57%         |            67.73%            |
-|  mAP   |     72.98%     |        73.13%         |            73.08%            |
+| Metric | Value(Pytorch) | Value(Mindspore, GPU) | 
+| :----: | :------------: | :-------------------: | 
+| Rank-1 |     66.05%     |        69.57%         |         
+|  mAP   |     72.98%     |        73.13%         |      
 
 ## RegDB(Visible-Thermal)
 
-| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | Value(Mindspore,  910, -- trial 1) |
-| :----: | :------------: | :------------------------------: | :--------------------------------------: |
-| Rank-1 |     73.20%     |              77.91%              |                  77.28%                  |
-|  mAP   |     71.60%     |              72.35%              |                  72.44%                  |
+| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | 
+| :----: | :------------: | :------------------------------: | 
+| Rank-1 |     73.20%     |              77.91%              |
+|  mAP   |     71.60%     |              72.35%              |                 
 
 ## RegDB(Thermal-Visible)
 
-| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | Value(Mindspore,  910, --trial 1) |
-| :----: | :------------: | :------------------------------: | :-------------------------------------: |
-| Rank-1 |     71.80%     |              76.50%              |                 76.07%                  |
-|  mAP   |     70.10%     |              71.37%              |                 70.37%                  |
+| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | V
+| :----: | :------------: | :------------------------------: | 
+| Rank-1 |     71.80%     |              76.50%              |                 
+|  mAP   |     70.10%     |              71.37%              |               
 
 ***Note**: The aforementioned pytorch results can be seen in original [pytorch repo](https://github.com/FutabaSakuraXD/Farewell-to-Mutual-Information-Variational-Distiilation-for-Cross-Modal-Person-Re-identification).
 
