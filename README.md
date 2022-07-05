@@ -275,10 +275,12 @@ After running `bash run_eval_XXX.sh [DATASET_PATH] [CHECKPOINT_PATH]`, you will 
 
 ## RegDB(Thermal-Visible)
 
-| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | V
+
+| Metric | Value(Pytorch) | Value(Mindspore, GPU, --trial 1) | 
 | :----: | :------------: | :------------------------------: | 
-| Rank-1 |     71.80%     |              76.50%              |                 
-|  mAP   |     70.10%     |              71.37%              |               
+| Rank-1 |     71.80%     |              76.50%              |             
+|  mAP   |     70.10%     |              71.37%              |                
+          
 
 ***Note**: The aforementioned pytorch results can be seen in original [pytorch repo](https://github.com/FutabaSakuraXD/Farewell-to-Mutual-Information-Variational-Distiilation-for-Cross-Modal-Person-Re-identification).
 
